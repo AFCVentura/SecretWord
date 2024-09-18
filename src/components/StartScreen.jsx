@@ -5,7 +5,7 @@ const StartScreen = ({ startGame }) => {
     return (
         <div className='start'>
             <h1>Secret Word</h1>
-            <p>Clique no botão abaixo para começar a jogar</p>
+            <p>Dica: você não precisa se preocupar com sinais gráficos, mas algumas palavras podem conter símbolos</p>
             <button onClick={startGame}>Começar jogo</button>
         </div>
     );

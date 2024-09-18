@@ -36,7 +36,12 @@ const GameScreen = ({
       </p>
       <div className="wordContainer">
         {letters.map((letter, id) => {
-          return guessedLetters.includes(letter.toLowerCase()) ? (
+          return guessedLetters.includes(
+            letter
+              .toLowerCase()
+              .normalize("NFD")
+              .replace(/\p{Diacritic}/gu, "")
+          ) ? (
             <div key={id} className="letterContainer">
               <span className="letter">{letter}</span>
             </div>

@@ -37,7 +37,6 @@ const App = () => {
     const categories = Object.keys(words);
     const category =
       categories[Math.floor(Math.random() * Object.keys(categories).length)];
-    console.log(category);
 
     const word =
       words[category][Math.floor(Math.random() * words[category].length)];
@@ -45,13 +44,19 @@ const App = () => {
     return { word, category };
   };
 
+  const normalizedLetters = letters.map((letter) =>
+    letter
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/\p{Diacritic}/gu, "")
+  );
   const startGame = () => {
+    clearLetterStates();
     //pick word and category
     let { word, category } = pickWordAndCategory();
 
     // word.normalize('NFD').replace(/\p{Diacritic}/gu, '').split(""); to remove diacritcs
     let wordLetters = word.split("");
-    console.log(wordLetters);
 
     setPickedWord(word);
     category = category.charAt(0).toUpperCase() + category.slice(1); // first letter to upper case
@@ -66,12 +71,6 @@ const App = () => {
       .toLowerCase()
       .normalize("NFD")
       .replace(/\p{Diacritic}/gu, "");
-    const normalizedLetters = letters.map((letter) =>
-      letter
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/\p{Diacritic}/gu, "")
-    );
 
     if (
       guessedLetters.includes(normalizedGuessLetter) ||
@@ -85,6 +84,7 @@ const App = () => {
         ...actualGuessedLetters,
         normalizedGuessLetter,
       ]); // unindo o que já tinha do array a algo a mais
+      return normalizedLetters;
     } else {
       setWrongLetters((actualWrongLetters) => [
         ...actualWrongLetters,
@@ -107,6 +107,18 @@ const App = () => {
     }
   }, [guesses]);
 
+  useEffect(() => {
+    // Faz com que o array gerado seja o array letters sem repetir valores.
+
+    const uniqueLetters = [...new Set(normalizedLetters)];
+    // Isso é importante para que, la lógica de confirmar vitória, o usuário não precise ter digitado duas ou mais vezes a mesma letra
+
+    if (guessedLetters.length === uniqueLetters.length && guessedLetters.length != 0) {
+      setScore((actualScore) => (actualScore += guessedLetters.length * 10));
+      startGame();
+    }
+  }, [guessedLetters]);
+
   const retry = () => {
     setScore(0);
     setGuesses(guessesQty);
@@ -128,7 +140,7 @@ const App = () => {
           score={score}
         />
       )}
-      {gameStage === "end" && <EndScreen retry={retry} />}
+      {gameStage === "end" && <EndScreen retry={retry} score={score} />}
     </div>
   );
 };
