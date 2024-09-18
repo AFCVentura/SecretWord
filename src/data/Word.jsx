@@ -1,8 +1,8 @@
 export const wordsList = {
-  carro: ["Motor", "Porta", "Capô", "Pneu", "Antena"],
-  fruta: ["Banana", "Maçã", "Pêra", "Mamão", "Laranja"],
-  corpo: ["Braço", "Perna", "Cérebro", "Pescoço", "Olhos"],
-  computador: ["Mouse", "Teclado", "Monitor", "Gabinete"],
-  programação: ["Linguagem", "Framework", "JavaScript", "React"],
-  alimento: ["Arroz", "Feijão", "Carne", "Leite", "Ovo"],
+  linguagens: ["Java", "Python", "JavaScript", "Lua", "Go", "C", "PHP", "COBOL", "TypeScript", "Rust", "Ruby", "Dart", "Swift", "Assembly", "Groovy", "Perl", "Erlang", "Zig", "Julia", "Fortran", "C#", "C++", "F#"],
+  frameworks: ["React", "jQuery", "Express", "Angular", "Flask", "Spring", "WordPress", "Django", "Laravel", "Svelte"],
+  programacao: ["Variável", "Operador", "Componente", "Propriedade", "Laço", "Estrutura", "Condicional", "Repetição", "Algoritmo", "Árvore", "Lista", "Array", "Vetor", "Matriz", "Escopo", "Classe", "Objeto", "Tipagem", "Atributo", "Método", "Construtor", "Herança", "Polimorfismo", "Abstração", "Composição", "IDE"],
+  infra: ["Porta", "IP", "SSH", "Rede", "TCP", "Enlace", "Transporte", "Aplicação", "OSI", "Física", "Sessão", "Apresentação"],
+  database: ["Relacional", "NoSQL", "SQL", "MySQL", "PostgreSQL", "MariaDB", "Oracle", "Query", "Chave", "Normalização", "Consulta"],
+  web: ["HTTP", "JSON", "Request", "Response", "POST", "PUT", "DELETE", "GET", "CRUD", "CORS", "URL", "Token"],
 };
